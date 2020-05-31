@@ -1,0 +1,43 @@
+{% extends 'layout.template.html'%}
+
+{%block title%}
+Check the details
+{%endblock%}
+
+{%block content%}
+    <h1>Check the booking details</h1>
+    <table class="table">
+	<tbody>
+		<tr>
+			<th scope="row">1</th>
+			<td>First Name</td>
+			<td>{{firstname}}</td>
+		</tr>
+        <tr>
+			<th scope="row">2</th>
+			<td>Last Name</td>
+			<td>{{lastname}}</td>
+		</tr>
+        <tr>
+			<th scope="row">3</th>
+			<td>Comments</td>
+			<td>{{comments}}</td>
+		</tr>
+        <tr>
+			<th scope="row">4</th>
+			<td>Room Type</td>
+			<td>{{roomtype}}</td>
+		</tr>
+        <tr>
+			<th scope="row">5</th>
+			<td>Amenities</td>
+			<td>{{amenities}}</td>
+		</tr>
+        <tr>
+			<th scope="row">6</th>
+			<td>Check-In Timing</td>
+			<td>{{checkintime}}</td>
+		</tr>
+	</tbody>
+    </table>
+{%endblock%}
