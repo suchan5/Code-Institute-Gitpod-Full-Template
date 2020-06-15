@@ -31,7 +31,7 @@ def process_bmi():
     print(request.form)
     weight = float(request.form.get('weight'))
     height = float(request.form.get('height'))
-    bmi = weight / (height**2) * 10000
+    bmi = round(weight / (height**2) * 10000, 2)
     return render_template('bmi-result.template.html',
                            weight=weight,
                            height=height,

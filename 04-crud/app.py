@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import csv
+import random
 
 app = Flask(__name__)
 
@@ -22,16 +23,17 @@ def process_create_employee():
     print(request.form)
     with open('data.csv', 'a', newline="\n") as fp:
         writer = csv.writer(fp, delimiter=",")
+        id = random.randint(10000, 99999)
         name = request.form.get('employee-name')
         job_title = request.form.get('job-title')
         salary = request.form.get('salary')
-        writer.writerow([name, job_title, salary])
+        writer.writerow([id, name, job_title, salary])
     return "form received"
 
 
 @app.route('/employees')
 def read_employee():
-    all_employees = [] #accumulator
+    all_employees = [] # accumulator
     # fp = open('data.csv', 'r', newline="\n")
     with open('data.csv', 'r', newline="\n") as fp:
         reader = csv.reader(fp, delimiter=",")
@@ -44,11 +46,7 @@ def read_employee():
             })
             print(line)
     return render_template('employee/view_employees.template.html', employees=all_employees)
-
-
-
-    #fp.close()
-
+    # fp.close()
 
 
 # "magic code" -- boilerplate

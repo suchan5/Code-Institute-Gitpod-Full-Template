@@ -1,6 +1,7 @@
-name,job_title,salary
-sujin,manager,5000
-suchan,backend developer,5000
-suin,marketer,7000
-suchan,manager,10000
-test,test,6000
+id,name,job_title,salary
+1,sujin,manager,5000
+2,suchan,backend developer,5000
+3,suin,marketer,7000
+4,suchan,manager,10000
+5,test,test,6000
+6,suchan,backend developer,5000
