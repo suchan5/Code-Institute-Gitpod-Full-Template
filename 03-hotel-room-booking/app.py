@@ -24,7 +24,7 @@ def process_form():
                            lastname=lastname,
                            comments=comments,
                            roomtype=roomtype,
-                           amenities=", ".join(amenities), # 요렇게 안하면 결과값이 list로 나옴
+                           amenities=", ".join(amenities),  # 요렇게 안하면 결과값이 list로 나옴
                            checkintime=checkintime
                            )
 

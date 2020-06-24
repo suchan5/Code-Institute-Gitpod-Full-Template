@@ -12,8 +12,8 @@ def home():
 
 @app.route('/', methods=['POST'])
 def process_form():
-    print(request.form)#마치 JS의 console.log처럼 이걸 함으로서 밑에 터미널 창에서 유저가 input한 값 확인 가능. 이건 항상 해주는게 습관이 되어야함
-    username = request.form.get('username')#<input type="text" name="username"> 요기서 가져온다. 
+    print(request.form)  # 마치 JS의 console.log처럼 이걸 함으로서 밑에 터미널 창에서 유저가 input한 값 확인 가능. 이건 항상 해주는게 습관이 되어야함
+    username = request.form.get('username')  # <input type="text" name="username"> 요기서 가져온다. 
     password = request.form.get('password')
     return render_template('process_form.template.html',
                            username=username,
