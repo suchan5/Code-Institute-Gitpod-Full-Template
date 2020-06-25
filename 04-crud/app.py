@@ -78,23 +78,6 @@ def process_update_employee(employee_id):
     return redirect(url_for('read_employee'))
 
 
-def find_employee_by_id(employee_id):
-    editing_employee = None
-    with open('data.csv', 'r', newline="\n") as fp:
-        reader = csv.reader(fp, delimiter=",")
-        next(reader)
-        for line in reader:
-            if line[0] == employee_id:
-                editing_employee = {
-                    'id': line[0],
-                    'employee_name': line[1],
-                    'job_title': line[2],
-                    'salary': line[3]
-                }
-                break
-    return editing_employee
-
-
 def read_employees_from_file():
     all_employees = []  # accumulator. State variable이라고도 함. 밑에 for문에서 'all_employees.appen({})' 라고 쓰고 이 dictionary를 통해서 여기다가 다 넣을꺼임
     # fp = open('data.csv', 'r', newline="\n")
@@ -110,6 +93,23 @@ def read_employees_from_file():
             })
     return all_employees
     # fp.close()
+
+
+def find_employee_by_id(employee_id):
+    editing_employee = None
+    with open('data.csv', 'r', newline="\n") as fp:
+        reader = csv.reader(fp, delimiter=",")
+        next(reader)
+        for line in reader:
+            if line[0] == employee_id:
+                editing_employee = {
+                    'id': line[0],
+                    'employee_name': line[1],
+                    'job_title': line[2],
+                    'salary': line[3]
+                }
+                break
+    return editing_employee
 
 
 # "magic code" -- boilerplate
