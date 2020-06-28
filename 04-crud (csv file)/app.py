@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
-import csv
+import csv  # 요고 import해야하는거 잊지마
 import random
 
 app = Flask(__name__)

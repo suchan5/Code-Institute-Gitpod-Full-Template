@@ -1,0 +1,26 @@
+{% extends 'layout.template.html' %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">이름</th>
+      <th scope="col">별명</th>
+      <th scope="col">포지션</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for e in employees%}
+    <tr>
+      <th scope="row">{{e.id}}</th>
+      <td>{{e.member_name}}</td>
+      <td>{{e.nickname}}</td>
+      <td>{{e.position}}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock%}
