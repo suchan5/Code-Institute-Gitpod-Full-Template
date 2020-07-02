@@ -1,0 +1,29 @@
+{% extends 'layout.template.html' %}
+
+{% block content%}
+<a class="btn btn-primary btn-sm" href="{{ url_for('create_members')}}">Create</a>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">이름</th>
+      <th scope="col">별명</th>
+      <th scope="col">포지션</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for m in members%}
+    <tr>
+      <th scope="row">{{m.id}}</th>
+      <td>{{m.name}}</td>
+      <td>{{m.nickname}}</td>
+      <td>{{m.position}}</td>
+      <td>
+        <a class="btn btn-primary btn-sm" href="{{ url_for('update_member', member_id=m.id) }}">Edit</a>
+        <a class="btn btn-danger btn-sm" href="#">Delete</a>
+      </td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+{% endblock%}

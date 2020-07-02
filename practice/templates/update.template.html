@@ -1,0 +1,24 @@
+{% extends 'layout.template.html'%}
+
+{% block content %}
+<h1>Editing Member: {{member.member_name}}</h1>
+<form method="POST">
+
+  <div class="form-group">
+    <label>이름</label>
+    <input type="text" class="form-control" name="member-name" value="{{member.member_name}}">
+  </div>
+
+  <div class="form-group">
+    <label>별명</label>
+    <input type="text" class="form-control" name="nickname" value="{{member.nickname}}">
+  </div>
+
+  <div class="form-group">
+    <label>포지션</label>
+    <input type="text" class="form-control" name="position" value="{{member.position}}">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock%}
