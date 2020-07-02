@@ -52,23 +52,23 @@ def update_employee(employee_id):
 
 @app.route('/employee/update/<employee_id>', methods=['POST'])
 def process_update_employee(employee_id):
-    # Step 0. retrieve all the employees in the .csv file in a list
+    # Step 1. retrieve all the employees in the .csv file in a list
     all_employees = read_employees_from_file()
 
-    # Step 1. find the employee that we have changed
+    # Step 2. find the employee that we have changed
     changed_employee = find_employee_by_id(employee_id)
 
-    # Step 2. update the changed employee to match the form
+    # Step 3. update the changed_employee to match the form
     changed_employee['employee_name'] = request.form.get('employee-name')
     changed_employee['job_title'] = request.form.get('job-title')
     changed_employee['salary'] = request.form.get('salary')
 
-    # Step 3. overwrite the employee information in the list
+    # Step 4. overwrite the employee information in the list
     for index in range(0, len(all_employees)):
         if all_employees[index]['id'] == changed_employee['id']:
             all_employees[index] = changed_employee
 
-    # Step 4. write the entire list back to the csv file
+    # Step 5. write the entire list back to the csv file
     with open('data.csv', 'w', newline="\n") as fp:
         writer = csv.writer(fp, delimiter=",")
         writer.writerow(['id', 'employee_name', 'job_title', 'salary'])  # 'employee_name'이라고 안하고 'name'이라고 했더니 에러뜸

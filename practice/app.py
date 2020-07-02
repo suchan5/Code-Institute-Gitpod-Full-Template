@@ -44,6 +44,24 @@ def update_member(member_id):
                            member=editing_member)
 
 
+@app.route('/update/<member_id>', methods=['POST'])
+def process_update_member(member_id):
+    all_members = read_members_from_file()
+    changed_member = find_member_by_id(member_id)
+    changed_member['member_name'] = request.form.get('member-name')
+    changed_member['nickname'] = request.form.get('nickname')
+    changed_member['position'] = request.form.get('position')
+    for index in range(0, len(all_members)):
+        if all_members[index]['id'] == changed_member['id']:
+            all_members[index] = changed_member
+    with open('data.csv', 'w', newline="\n") as fp:
+        writer = csv.writer(fp, delimiter=",")
+        writer.writerow(['id', 'member_name', 'nickname', 'position'])
+        for m in all_members:
+            writer.writerow([m['id'], m['member_name'], m['nickname'], m['position']])
+    return redirect(url_for('read_members'))
+
+
 def read_members_from_file():
     all_members = []
     with open('data.csv', 'r', newline="\n") as fp:
