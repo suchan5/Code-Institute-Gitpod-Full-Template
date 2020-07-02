@@ -83,14 +83,14 @@ def find_member_by_id(member_id):
         reader = csv.reader(fp, delimiter=",")
         next(reader)
         for line in reader:
-            if member_id == line[0]:
+            if  member_id == line[0]:
                 editing_member = {
                     'id': line[0],
                     'member_name': line[1],
                     'nickname': line[2],
                     'position': line[3]
                 }
-            break
+                break
     return editing_member
 
 
