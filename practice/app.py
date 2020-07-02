@@ -11,12 +11,12 @@ def home():
     return 'Welcome!'
 
 
-@app.route('/create/members')
+@app.route('/member/create')
 def create_members():
-    return render_template('create.template.html')
+    return render_template('member/create.template.html')
 
 
-@app.route('/create/members', methods=['POST'])
+@app.route('/member/create', methods=['POST'])
 def process_members():
     print(request.form)
     with open('data.csv', 'a', newline="\n") as fp:
@@ -29,22 +29,22 @@ def process_members():
     return redirect(url_for('read_members'))
 
 
-@app.route('/members')
+@app.route('/member/members')
 def read_members():
     all_members = read_members_from_file()
-    return render_template('read.template.html',
+    return render_template('member/read.template.html',
                            members=all_members
                            )
 
 
-@app.route('/update/<member_id>')
+@app.route('/member/update/<member_id>')
 def update_member(member_id):
     editing_member = find_member_by_id(member_id)
-    return render_template('update.template.html',
+    return render_template('member/update.template.html',
                            member=editing_member)
 
 
-@app.route('/update/<member_id>', methods=['POST'])
+@app.route('/member/update/<member_id>', methods=['POST'])
 def process_update_member(member_id):
     all_members = read_members_from_file()
     changed_member = find_member_by_id(member_id)
@@ -83,7 +83,7 @@ def find_member_by_id(member_id):
         reader = csv.reader(fp, delimiter=",")
         next(reader)
         for line in reader:
-            if  member_id == line[0]:
+            if member_id == line[0]:
                 editing_member = {
                     'id': line[0],
                     'member_name': line[1],
