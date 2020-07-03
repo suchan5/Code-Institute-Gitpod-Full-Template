@@ -62,6 +62,27 @@ def process_update_member(member_id):
     return redirect(url_for('read_members'))
 
 
+@app.route('/member/confirm_delete/<member_id>')
+def confirm_to_delete_member(member_id):
+    member = find_member_by_id(member_id)
+    return render_template('member/confirm_delete.template.html',
+                           member=member
+                           )
+
+
+@app.route('/member/delete/<member_id>', methods=['POST'])
+def delete_member(member_id):
+    all_members = read_members_from_file()
+    member_to_be_deleted = find_member_by_id(member_id)
+    for index in range(len(all_members)):
+        if member_to_be_deleted['id'] == all_members[index]['id']:
+            del all_members[index]
+            break
+
+    write_to_file(all_members)
+    return redirect(url_for('read_members'))
+
+
 def read_members_from_file():
     all_members = []
     with open('data.csv', 'r', newline="\n") as fp:
@@ -92,6 +113,14 @@ def find_member_by_id(member_id):
                 }
                 break
     return editing_member
+
+
+def write_to_file(all_members):
+    with open('data.csv', 'w', newline="\n") as fp:
+        writer = csv.writer(fp, delimiter=",")
+        writer.writerow(['id', 'member_name', 'nickname', 'position'])
+        for m in all_members:
+            writer.writerow([m['id'], m['member_name'], m['nickname'], m['position']])
 
 
 # "magic code" -- boilerplate

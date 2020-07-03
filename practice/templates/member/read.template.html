@@ -20,7 +20,7 @@
       <td>{{m.position}}</td>
       <td>
         <a class="btn btn-primary btn-sm" href="{{ url_for('update_member', member_id=m.id) }}">Edit</a>
-        <a class="btn btn-danger btn-sm" href="#">Delete</a>
+        <a class="btn btn-danger btn-sm" href="{{ url_for('confirm_to_delete_member', member_id=m.id) }}">Delete</a>
       </td>
     </tr>
    {% endfor %}

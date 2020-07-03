@@ -1,0 +1,13 @@
+{% extends 'layout.template.html' %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+  Are you sure you want to delete {{member.member_name}}?
+  <form method="POST" action="{{url_for('delete_member', member_id=member.id)}}">
+    <input type="submit" class="btn btn-danger" value="Yes"> 
+    <a href="{{url_for('read_members')}}" class="btn btn-primary">No</a>
+</form>
+</div>
+
+
+{% endblock%}
